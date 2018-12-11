@@ -14,10 +14,10 @@
         <title>My Games Collection</title>
     </head>
     <body>
-        <form action="Login" method="post">
+        <form action="Main.jsp" method="post">
             <p> Nombre: <input type="text" name="user" id="user">
             <p> Passwd:  <input type="password" name="passwd" id="passwd">
-            <p> <input type="submit" name="access" id="access" value="access">
+            <p> <input type="submit" value="access">
         </form>
 
         <!--        <input type="submit" value="HM" onclick="holaMundo()">-->
