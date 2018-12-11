@@ -1,0 +1,47 @@
+CREATE TABLE IF NOT EXISTS usuario(
+id_usuario Integer AUTO_INCREMENT PRIMARY KEY,
+nick_usuario varchar(20) UNIQUE,
+nombre_usuario varchar(20),
+email_usuario varchar(45) UNIQUE,
+passwd_usuario varchar(20) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Acceso(
+id_acceso Integer AUTO_INCREMENT PRIMARY KEY,
+id_usuario Integer,
+validar boolean NOT NULL,
+fechaultimoacceso date,
+FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario)
+);
+
+CREATE TABLE IF NOT EXISTS juegos(
+id_juego Integer AUTO_INCREMENT PRIMARY KEY,
+titulo_juego varchar(50),
+plataforma_juego varchar(20),
+genero_juego varchar(25),
+estudio_juego varchar(25),
+rate_juego float(3,1),
+portada_juego varchar(50)
+);
+
+CREATE TABLE IF NOT EXISTS listas(
+id_lista Integer AUTO_INCREMENT PRIMARY KEY,
+nombre_lista varchar(50),
+id_usuario Integer,
+FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario)
+);
+
+CREATE TABLE IF NOT EXISTS listajuego(
+id_lj Integer AUTO_INCREMENT PRIMARY KEY,
+id_usuario Integer,
+id_juego Integer,
+FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario),
+FOREIGN KEY(id_juego) REFERENCES juegos(id_juego)
+);
+
+
+
+insert into usuario(id_usuario,nick_usuario,nombre_usuario,email_usuario,passwd_usuario) VALUES(null,"krz","Fernando","fernandoceballos1989@gmail.com","12345pass");
+insert into usuario(id_usuario,nick_usuario,nombre_usuario,email_usuario,passwd_usuario) VALUES(null,"Inm","Inma","inmamangas23r@gmail.com","54321pass");
+
+
