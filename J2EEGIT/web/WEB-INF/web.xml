@@ -4,9 +4,17 @@
         <servlet-name>ServletControllerPrueba</servlet-name>
         <servlet-class>com.fernandoceballos.J2EEGIT.Controller.ServletControllerPrueba</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletConnPrueba</servlet-name>
+        <servlet-class>com.fernandoceballos.J2EEGIT.Controller.ServletConnPrueba</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletControllerPrueba</servlet-name>
         <url-pattern>/ServletControllerPrueba</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletConnPrueba</servlet-name>
+        <url-pattern>/ServletConnPrueba</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
