@@ -27,7 +27,7 @@ public class ServletConnPrueba extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     //Se declara el DataSource
-    @Resource(name = "jdbc/usuario")
+    @Resource(name = "jdbc/pool")
     private DataSource poolConn;
 
     /**

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/J2EEGIT">
-<Resource name="jdbc/usuario" auth="Container" type="javax.sql.DataSource" 
+<Resource name="jdbc/pool" auth="Container" type="javax.sql.DataSource" 
 maxActive="18" maxIdle="4" maxWait="3000"
 username="root" password="" driverClassName="com.mysql.jdbc.Driver"
           url="jdbc:mysql://localhost:3306/pruebamgc">
