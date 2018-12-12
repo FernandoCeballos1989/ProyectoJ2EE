@@ -44,46 +44,83 @@ public class ControllerUsuario extends HttpServlet {
             throw new ServletException(e);
         }
 
+        System.out.println("ENTRA AL CONTROLLER INICIO");
+        
+        
     }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
+        //LEER INSTRUCCIÓN QUE LLEGA DESDE JSP
+        String instruccion = request.getParameter("instruccionAdd");
+
+        //EJECUTAR LISTADO SI LA INSTRUCCIÓN ADD ES NULL
+        if (instruccion == null) {
+            instruccion = "listarUsers";
+        }
+
+        System.out.println("INSTRUCCION : "+instruccion);
+        //SELECTOR DE EJECUCIÓN
+        switch (instruccion) {
+            case "listarUsers":
+                System.out.println("VA AL LISTADO");
+                getUsers(request, response);
+                break;
+            case "addUser":
+                System.out.println("VA AL ADD");
+                AddUsers(request, response);
+                break;
+            default:
+                getUsers(request, response);
+        }
+
+    }
+
+    private void getUsers(HttpServletRequest request, HttpServletResponse response) {
         //Creamos una lista donde capturar los Usuarios recibidos por el dao
         List<Usuarios> usuarios;
-        
+
         //Realizamos la consulta a través del método getUsuairos del dao
         try {
-            
+
             //Igualamos la lista a la que devuelva el dao
-            usuarios= uDao.getUsuarios();
+            usuarios = uDao.getUsuarios();
             /**
-             * Agregamos la lista al request para poder pasarla a la vista.
-             * Es importante recordar que el nombre que le damos , será el 
-             * nombre con el que lo identificaremos en la vista
+             * Agregamos la lista al request para poder pasarla a la vista. Es
+             * importante recordar que el nombre que le damos , será el nombre
+             * con el que lo identificaremos en la vista
              */
             request.setAttribute("listaUsuarios", usuarios);
-            
+
             //Por último , enviamos el listado a la vista(JSP)
             RequestDispatcher miDispatcher = request.getRequestDispatcher("/VistaUsuariosList.jsp");
             miDispatcher.forward(request, response);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    private void AddUsers(HttpServletRequest request, HttpServletResponse response) {
+        
+        //CAPTURA LOS ATRIBUTOS QUE NOS LLEGAN DESDE EL FORM DE addUser.jsp
+        String nickU=request.getParameter("nickForm");
+        String nombreU=request.getParameter("nombreForm");
+        String emailU=request.getParameter("emailForm");
+        String passU=request.getParameter("passForm");
+        
+        //CREA UN USUARIO TEMPORAL
+        Usuarios uTemp= new Usuarios(nickU,nombreU,emailU,passU);
+        System.out.println(uTemp);
+        
+        //ADD DEL USER EN LA BBDD
+        uDao.addUser(uTemp);
+        
+        //DIRIGe DE NUEVO AL LISTADO UNA VEZ AÑADIDO
+        getUsers(request, response);
+        
+    }
 
 }

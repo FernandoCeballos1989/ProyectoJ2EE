@@ -53,32 +53,64 @@ public class UsuarioDao {
 
         miResultSet = miStatement.executeQuery(sql);
 
-        
         /**
          * AHORA , CAPTURAREMOS LOS REGISTROS QUE RECIBAMOS DE BBDD, PARA ELLO
-         * RECORREMOS EL RESULTSET , IDENTIFICAMOS LOS CAMPOS , Y LOS AÑADIMOS
-         * A LA COLECCION List<Usuario>
+         * RECORREMOS EL RESULTSET , IDENTIFICAMOS LOS CAMPOS , Y LOS AÑADIMOS A
+         * LA COLECCION List<Usuario>
          */
-          while(miResultSet.next()){
-              //se puede acceder desde el indice del campo , o desde su nombre
-              Integer idUser =miResultSet.getInt("id_usuario");
-              String nickUser=miResultSet.getString("nick_usuario");
-              String nombreUser=miResultSet.getString("nombre_usuario");
-              String emailUser=miResultSet.getString("email_usuario");
-              String passwdUser=miResultSet.getString("passwd_usuario");
-              
-              //Se crea un Usuario temporal , para añadir a la colección a cada
-              //vuelta de bucle
-              Usuarios temp = new Usuarios(idUser,nickUser,nombreUser,emailUser,passwdUser);
-              usuarios.add(temp);
-              
-          }
-        
-       //Finalmente , devolvemos el listado con todos los registros
+        while (miResultSet.next()) {
+            //se puede acceder desde el indice del campo , o desde su nombre
+            Integer idUser = miResultSet.getInt("id_usuario");
+            String nickUser = miResultSet.getString("nick_usuario");
+            String nombreUser = miResultSet.getString("nombre_usuario");
+            String emailUser = miResultSet.getString("email_usuario");
+            String passwdUser = miResultSet.getString("passwd_usuario");
+
+            //Se crea un Usuario temporal , para añadir a la colección a cada
+            //vuelta de bucle
+            Usuarios temp = new Usuarios(idUser, nickUser, nombreUser, emailUser, passwdUser);
+            usuarios.add(temp);
+
+        }
+
+        //Finalmente , devolvemos el listado con todos los registros
         return usuarios;
     }
 
-    
-    
-    
+    public void addUser(Usuarios uTemp) {
+
+        //INSTANCIA DE LA CONEXION
+        Connection miConn = null;
+        PreparedStatement stAdd = null;
+        //LA CONSULTA
+        String consulta = "INSERT INTO usuario(nick_usuario,nombre_usuario,email_usuario,passwd_usuario) VALUES(?,?,?,?)";
+
+        try {
+            //Se establece la conexion
+            miConn = datos.getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //se pasa la consulta al statement
+
+        try {
+            stAdd = miConn.prepareStatement(consulta);
+            System.out.println(stAdd);
+            //DAMOS VALORES AL STATEMENT
+            stAdd.setString(1, uTemp.getNickUser());
+            stAdd.setString(2, uTemp.getNombreUser());
+            stAdd.setString(3, uTemp.getEmailUser());
+            stAdd.setString(4, uTemp.getPassUser());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //EJECUTAMOS
+        try {
+            stAdd.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

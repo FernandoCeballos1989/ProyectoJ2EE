@@ -12,6 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/style.css">
         <title>VISTA DEL LISTADO DE USUARIOS</title>
     </head>
 
@@ -19,7 +20,7 @@
 
     <body>
 
-        <table>
+        <table class="paleBlueRows">
             <!--            CABECERA-->
             <tr>
                 <th>Nick</th>
@@ -42,6 +43,10 @@
 
 
         </table>
+
+        <div id="cntBtn">
+            <input type="button" value="add" onclick="window.location.href='addUser.jsp'"/>
+        </div>
 
     </body>
 </html>

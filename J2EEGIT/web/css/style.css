@@ -1,13 +1,65 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+/*estilos css
 */
 /* 
     Created on : 17-oct-2018, 15:16:41
     Author     : Fernando Ceballos Carreras<fernandoceballos1989@gmail.com>
 */
 
-body{
+.mibody{
     background-color: aliceblue
 }
+
+
+
+table.paleBlueRows {
+    float:left;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 7px solid #FFFFFF;
+    background-color: #EEEEEE;
+    width: 350px;
+    height: 200%;
+    text-align: center;
+    border-collapse: collapse;
+}
+table.paleBlueRows td, table.paleBlueRows th {
+    border: 5px solid #C5DDE7;
+    padding: 2px 2px;
+}
+table.paleBlueRows tbody td {
+    font-size: 14px;
+    color: #000000;
+}
+table.paleBlueRows tr:nth-child(even) {
+    background: #D0E4F5;
+}
+table.paleBlueRows thead {
+    background: #1167A4;
+    background: -moz-linear-gradient(top, #4c8dbb 0%, #2876ad 66%, #1167A4 100%);
+    background: -webkit-linear-gradient(top, #4c8dbb 0%, #2876ad 66%, #1167A4 100%);
+    background: linear-gradient(to bottom, #4c8dbb 0%, #2876ad 66%, #1167A4 100%);
+    border-bottom: 3px solid #FFFFFF;
+}
+table.paleBlueRows thead th {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+}
+table.paleBlueRows tfoot td {
+    font-size: 14px;
+}
+table.paleBlueRows tfoot .links {
+    text-align: right;
+}
+table.paleBlueRows tfoot .links a{
+    display: inline-block;
+    background: #1C6EA4;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 5px;
+}
+
+#cntBtn{
+    vertical-align: auto;
+    margin-left: 100px;
+}  
