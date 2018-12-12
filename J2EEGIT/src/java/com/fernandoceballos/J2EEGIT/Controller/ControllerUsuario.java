@@ -67,7 +67,7 @@ public class ControllerUsuario extends HttpServlet {
             request.setAttribute("listaUsuarios", usuarios);
             
             //Por último , enviamos el listado a la vista(JSP)
-            RequestDispatcher miDispatcher = request.getRequestDispatcher("/miRutaJsp");
+            RequestDispatcher miDispatcher = request.getRequestDispatcher("/VistaUsuariosList.jsp");
             miDispatcher.forward(request, response);
             
         } catch (Exception e) {
