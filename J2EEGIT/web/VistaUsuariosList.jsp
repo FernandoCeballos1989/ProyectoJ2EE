@@ -4,8 +4,8 @@
     Author     : Fernando ceballos <fernandoceballos1989@gmail.com>
 --%>
 
-<!--SCRIPTLETS PARA IMPORTACIONES-->
-<%@page import="java.util.*,com.fernandoceballos.J2EEGIT.Entity.*"%>
+<!--AÑADE TAGLIB PARA ETIQUETAS JSP -->
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,16 +14,34 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>VISTA DEL LISTADO DE USUARIOS</title>
     </head>
-    
-    <%
-        //Se obtiene el listado de el controlador(ControllerUsuario.java)
-        List<Usuarios> usuarios=(List<Usuarios>) request.getAttribute("listaUsuarios");
-    %>
-    
+
+
+
     <body>
-        
-        <!--        PRUEBA CORRECTA COMUNICACIÓN BBDD Y DE LECTURA -->
-        <%= usuarios %>
-        
+
+        <table>
+            <!--            CABECERA-->
+            <tr>
+                <th>Nick</th>
+                <th>Nombre</th>
+                <th>Email</th>
+            </tr>
+
+            <c:forEach var="uTemp" items="${listaUsuarios}">
+
+                <tr>
+                    <!--ETIQUETAS JSP PARA CAPTURAR ATRIBUTOS , EL NOMBRE DEBE 
+                    SER IGUAL AL QUE TIENE EN LA ENTITY-->
+                    <td>${uTemp.nickUser}</td>
+                    <td>${uTemp.nombreUser}</td>
+                    <td>${uTemp.emailUser}</td>
+                </tr>
+
+            </c:forEach>
+
+
+
+        </table>
+
     </body>
 </html>
