@@ -9,14 +9,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>MAIN log-in</title>
+        <title>MAIN PRINCIPAL</title>
     </head>
     <body>
         <!--        Prueba de peticiones de JSP-->
         <h1>
-            usuario:<%=request.getParameter("user") %>
-            <br/>
-            PASS:<%=request.getParameter("passwd") %>
+            ESTE ES EL MAIN
         </h1>
+        <br/><br/><br/>
+        
+        <!--        AQUI INCRUSTA EL LOGIN DENTRO DEL MAIN-->
+        <jsp:include page="Login.jsp"></jsp:include>
+        
     </body>
 </html>

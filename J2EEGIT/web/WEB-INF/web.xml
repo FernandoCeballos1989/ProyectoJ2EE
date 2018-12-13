@@ -31,6 +31,7 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>Login.jsp</welcome-file>
+        <welcome-file>Main.jsp</welcome-file>
         <welcome-file>ControllerUsuario</welcome-file>
     </welcome-file-list>
 </web-app>
