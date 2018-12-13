@@ -26,7 +26,7 @@
                 <th>Nick</th>
                 <th>Nombre</th>
                 <th>Email</th>
-                <th>Update</th>
+                <th>Action</th>
             </tr>
 
             <c:forEach var="uTemp" items="${listaUsuarios}">
@@ -38,7 +38,11 @@
                 </c:url>
 
 
-
+                <!--LINK PARA ELIMINAR-->
+                 <c:url var="linkDelete" value="ControllerUsuario">
+                    <c:param name="instruccion" value="delete"></c:param>
+                    <c:param name="idUserLink" value="${uTemp.idUser}"></c:param>
+                </c:url>
 
                 <tr>
                     <!--ETIQUETAS JSP PARA CAPTURAR ATRIBUTOS , EL NOMBRE DEBE 
@@ -47,7 +51,7 @@
                     <td>${uTemp.nombreUser}</td>
                     <td>${uTemp.emailUser}</td>
                     <!--REFERENCIA CON EL LINK TEMPORAL DE ARRIBA PARA ENVIAR EL ID AL CONTROLADOR-->
-                    <td><a href="${linkTemp}">Update</a></td>
+                    <td><a href="${linkTemp}">Update</a>&nbsp;&nbsp;&nbsp;<a href="${linkDelete}">Delete</a></td>
                 </tr>
 
             </c:forEach>

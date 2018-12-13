@@ -92,7 +92,16 @@ public class ControllerUsuario extends HttpServlet {
                     }
                 }
                 break;
-
+            case "delete":
+                System.out.println("VA AL DELETE");
+                 {
+                    try {
+                        DeleteUser(request, response);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+                break;
             default:
                 getUsers(request, response);
         }
@@ -170,16 +179,27 @@ public class ControllerUsuario extends HttpServlet {
         String passU = request.getParameter("passForm");
 
         //CREA UN USUARIO TEMPORAL
-        Usuarios uTemp = new Usuarios(idU,nickU, nombreU, emailU, passU);
+        Usuarios uTemp = new Usuarios(idU, nickU, nombreU, emailU, passU);
         System.out.println(uTemp);
-        
+
         //UPDATE DEL USER EN LA BBDD
         uDao.updateUser(uTemp);
 
         //DIRIGE DE NUEVO AL LISTADO UNA VEZ AÑADIDO
         getUsers(request, response);
-        
-        
+
+    }
+
+    private void DeleteUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        //Se captura del id recibido del listado
+        Integer id = Integer.parseInt(request.getParameter("idUserLink"));
+
+        //Pasa el id al dao para que se encargue de eliminar el registro
+        uDao.deleteUser(id);
+        //DIRIGE DE NUEVO AL LISTADO UNA VEZ ELIMINADO
+        getUsers(request, response);
+
     }
 
 }

@@ -195,4 +195,34 @@ public class UsuarioDao {
         }
     }
 
+    public void deleteUser(Integer id) throws Exception{
+        //INSTANCIA DE LA CONEXION
+        Connection miConn = null;
+        PreparedStatement stDelete = null;
+        //LA CONSULTA
+        String consulta = "DELETE FROM usuario WHERE id_usuario=?";
+
+        try {
+            //Se establece la conexion
+            miConn = datos.getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //se pasa la consulta al statement
+        try {
+            stDelete = miConn.prepareStatement(consulta);
+            
+            //DAMOS VALORES AL STATEMENT
+            stDelete.setInt(1, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //EJECUTAMOS
+        try {
+            stDelete.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
