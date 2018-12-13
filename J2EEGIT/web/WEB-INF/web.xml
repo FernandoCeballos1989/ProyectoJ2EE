@@ -8,6 +8,10 @@
         <servlet-name>ServletConnPrueba</servlet-name>
         <servlet-class>com.fernandoceballos.J2EEGIT.Controller.ServletConnPrueba</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControllerLogin</servlet-name>
+        <servlet-class>com.fernandoceballos.J2EEGIT.Controller.ControllerLogin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletControllerPrueba</servlet-name>
         <url-pattern>/ServletControllerPrueba</url-pattern>
@@ -16,9 +20,17 @@
         <servlet-name>ServletConnPrueba</servlet-name>
         <url-pattern>/ServletConnPrueba</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControllerLogin</servlet-name>
+        <url-pattern>/ControllerLogin</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>Login.jsp</welcome-file>
+        <welcome-file>ControllerUsuario</welcome-file>
+    </welcome-file-list>
 </web-app>

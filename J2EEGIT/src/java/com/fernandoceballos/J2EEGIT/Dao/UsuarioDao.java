@@ -73,11 +73,15 @@ public class UsuarioDao {
 
         }
 
+        miResultSet.close();
+        miConn.close();
+
         //Finalmente , devolvemos el listado con todos los registros
         return usuarios;
+
     }
 
-    public void addUser(Usuarios uTemp) {
+    public void addUser(Usuarios uTemp) throws SQLException {
 
         //INSTANCIA DE LA CONEXION
         Connection miConn = null;
@@ -109,11 +113,14 @@ public class UsuarioDao {
             stAdd.execute();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            stAdd.close();
+            miConn.close();
         }
 
     }
 
-    public Usuarios FindById(Integer id) {
+    public Usuarios FindById(Integer id) throws SQLException {
 
         //DECLARACION DE LA CONEXION,PREPARESTATEMENT Y RESULTSET
         Connection miConn = null;
@@ -155,6 +162,9 @@ public class UsuarioDao {
 
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            miResultSet.close();
+            miConn.close();
         }
 
         return uTemp;
@@ -170,11 +180,8 @@ public class UsuarioDao {
         try {
             //Se establece la conexion
             miConn = datos.getConnection();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        //se pasa la consulta al statement
-        try {
+
+            //se pasa la consulta al statement
             stUpdate = miConn.prepareStatement(consulta);
 
             //DAMOS VALORES AL STATEMENT
@@ -183,19 +190,16 @@ public class UsuarioDao {
             stUpdate.setString(3, uTemp.getEmailUser());
             stUpdate.setString(4, uTemp.getPassUser());
             stUpdate.setInt(5, uTemp.getIdUser());
-            System.out.println(stUpdate);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        //EJECUTAMOS
-        try {
+
+            //EJECUTAMOS
             stUpdate.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } finally {
+            stUpdate.close();
+            miConn.close();
         }
     }
 
-    public void deleteUser(Integer id) throws Exception{
+    public void deleteUser(Integer id) throws Exception {
         //INSTANCIA DE LA CONEXION
         Connection miConn = null;
         PreparedStatement stDelete = null;
@@ -205,24 +209,69 @@ public class UsuarioDao {
         try {
             //Se establece la conexion
             miConn = datos.getConnection();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        //se pasa la consulta al statement
-        try {
+
+            //se pasa la consulta al statement
             stDelete = miConn.prepareStatement(consulta);
-            
+
             //DAMOS VALORES AL STATEMENT
             stDelete.setInt(1, id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        //EJECUTAMOS
-        try {
+
+            //EJECUTAMOS
             stDelete.execute();
+
+        } finally {
+            stDelete.close();
+            miConn.close();
+        }
+
+    }
+    
+    
+    //MÉTODOS PARA LOGIN
+
+    public boolean CompruebaLogin(String nombre, String passwd) throws SQLException {
+        
+        
+        //DECLARACION DE LA CONEXION,PREPARESTATEMENT Y RESULTSET
+        Connection miConn = null;
+        PreparedStatement miSt = null;
+        ResultSet miResultSet = null;
+        boolean ok = false;
+        
+        
+        
+        //LA CONSULTA
+        String consulta = "SELECT * FROM usuario WHERE nombre_usuario=? and passwd_usuario=?";
+
+        //INICIALIZACION DE CONEXION
+        try {
+            //Se establece la conexion
+            miConn = datos.getConnection();
+            //SE CREA LA CONSULTA PREPARADA
+            miSt = miConn.prepareStatement(consulta);
+            //ASIGNA VALOR AL PARÁMETRO DE LA CONSULTA
+            miSt.setString(1, nombre);
+            miSt.setString(2, passwd);
+            System.out.println(miSt);
+
+            //EJECUTA LA CONSULTA
+            miResultSet = miSt.executeQuery();
+
+            //AHORA SE RECORRE EL RESULTADO DE LA BÚSQUEDA Y SE DAN LOS ATRIBUTOS AL OBJETO USUARIO 
+            if (miResultSet.next()) {
+                //encontrado user
+                ok=true;
+            } 
+
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            miResultSet.close();
+            miConn.close();
         }
+
+   
+        return ok;
     }
 
 }

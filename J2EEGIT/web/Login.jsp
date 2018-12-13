@@ -14,9 +14,15 @@
         <title>My Games Collection</title>
     </head>
     <body>
-        <form action="Main.jsp" method="post">
-            <p> Nombre: <input type="text" name="user" id="user">
-            <p> Passwd:  <input type="password" name="passwd" id="passwd">
+        <!--Necesita que al pulsar el boton , los datos viajen al controlador-->
+        <form name="formLogin" method="get" action="ControllerLogin" >
+
+            <!--AQUÍ SE INTRODUCE UN VALOR INVISIBLE QUE AYUDARÁ A IDENTIFICAR LA 
+                ACCIÓN DE LOGIN , EN EL MÉTODO DOGET DEL CONTROLADOR-->
+            <input type="hidden" name="instruccion" value="credenciales">
+
+            <p> Nombre: <input type="text" name="nombreUser" id="user">
+            <p> Passwd:  <input type="password" name="passwdUser" id="passwd">
             <p> <input type="submit" value="access">
         </form>
 

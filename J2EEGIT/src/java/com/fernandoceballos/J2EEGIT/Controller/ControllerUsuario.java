@@ -7,6 +7,7 @@ import com.fernandoceballos.J2EEGIT.Dao.UsuarioDao;
 import com.fernandoceballos.J2EEGIT.Entity.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -71,7 +72,13 @@ public class ControllerUsuario extends HttpServlet {
                 break;
             case "addUser":
                 System.out.println("VA AL ADD");
+        {
+            try {
                 AddUsers(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
                 break;
             case "AVistaUpdate":
                 System.out.println("VA A LA VISTAUPDATE UPDATE");
@@ -133,7 +140,7 @@ public class ControllerUsuario extends HttpServlet {
         }
     }
 
-    private void AddUsers(HttpServletRequest request, HttpServletResponse response) {
+    private void AddUsers(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 
         //CAPTURA LOS ATRIBUTOS QUE NOS LLEGAN DESDE EL FORM DE addUser.jsp
         String nickU = request.getParameter("nickForm");
