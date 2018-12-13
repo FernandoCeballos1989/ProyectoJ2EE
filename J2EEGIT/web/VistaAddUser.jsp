@@ -17,7 +17,7 @@
 
             <!--AQUÍ SE INTRODUCE UN VALOR INVISIBLE QUE AYUDARÁ A IDENTIFICAR LA 
                 ACCIÓN DE ADD , EN EL MÉTODO DOGET DEL CONTROLADOR-->
-            <input type="hidden" name="instruccionAdd" value="addUser">
+            <input type="hidden" name="instruccion" value="addUser">
 
             <!--EL NAME ES EL QUE IDENTIFICARÁ CADA ATRIBUTO EN EL ControllerUsuario.java-->
             <input id="nick" type="text" name="nickForm" placeholder="Nick"><br/>

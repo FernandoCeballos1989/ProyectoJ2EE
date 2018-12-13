@@ -26,9 +26,19 @@
                 <th>Nick</th>
                 <th>Nombre</th>
                 <th>Email</th>
+                <th>Update</th>
             </tr>
 
             <c:forEach var="uTemp" items="${listaUsuarios}">
+
+                <!--AQUÍ SE PASA EL ID DEL USUARIO SELECCIONADO AL CONTROLADOR(ControllerUsuario.java)-->
+                <c:url var="linkTemp" value="ControllerUsuario">
+                    <c:param name="instruccion" value="AVistaUpdate"></c:param>
+                    <c:param name="idUserLink" value="${uTemp.idUser}"></c:param>
+                </c:url>
+
+
+
 
                 <tr>
                     <!--ETIQUETAS JSP PARA CAPTURAR ATRIBUTOS , EL NOMBRE DEBE 
@@ -36,6 +46,8 @@
                     <td>${uTemp.nickUser}</td>
                     <td>${uTemp.nombreUser}</td>
                     <td>${uTemp.emailUser}</td>
+                    <!--REFERENCIA CON EL LINK TEMPORAL DE ARRIBA PARA ENVIAR EL ID AL CONTROLADOR-->
+                    <td><a href="${linkTemp}">Update</a></td>
                 </tr>
 
             </c:forEach>
@@ -45,7 +57,7 @@
         </table>
 
         <div id="cntBtn">
-            <input type="button" value="add" onclick="window.location.href='addUser.jsp'"/>
+            <input type="button" value="add" onclick="window.location.href = 'VistaAddUser.jsp'"/>
         </div>
 
     </body>

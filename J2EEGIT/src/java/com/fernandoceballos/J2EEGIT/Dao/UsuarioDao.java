@@ -113,4 +113,86 @@ public class UsuarioDao {
 
     }
 
+    public Usuarios FindById(Integer id) {
+
+        //DECLARACION DE LA CONEXION,PREPARESTATEMENT Y RESULTSET
+        Connection miConn = null;
+        PreparedStatement miSt = null;
+        ResultSet miResultSet = null;
+
+        //Crea Usuario temporal en el que capturar los atributos
+        Usuarios uTemp = null;
+
+        //LA CONSULTA
+        String consulta = "SELECT * FROM usuario WHERE id_usuario=?";
+
+        //INICIALIZACION DE CONEXION
+        try {
+            //Se establece la conexion
+            miConn = datos.getConnection();
+            //SE CREA LA CONSULTA PREPARADA
+            miSt = miConn.prepareStatement(consulta);
+            //ASIGNA VALOR AL PARÁMETRO DE LA CONSULTA
+            miSt.setInt(1, id);
+            System.out.println(miSt);
+
+            //EJECUTA LA CONSULTA
+            miResultSet = miSt.executeQuery();
+
+            //AHORA SE RECORRE EL RESULTADO DE LA BÚSQUEDA Y SE DAN LOS ATRIBUTOS AL OBJETO USUARIO 
+            if (miResultSet.next()) {
+                Integer idUser = miResultSet.getInt("id_usuario");
+                String nickUser = miResultSet.getString("nick_usuario");
+                String nombreUser = miResultSet.getString("nombre_usuario");
+                String emailUser = miResultSet.getString("email_usuario");
+                String passwdUser = miResultSet.getString("passwd_usuario");
+
+                //SE DAN LOS VALORES DE BBDD AL USUARIO
+                uTemp = new Usuarios(idUser, nickUser, nombreUser, emailUser, passwdUser);
+            } else {
+                throw new Exception("User no encontrado ID:" + id);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return uTemp;
+    }
+
+    public void updateUser(Usuarios uTemp) throws Exception {
+        //INSTANCIA DE LA CONEXION
+        Connection miConn = null;
+        PreparedStatement stUpdate = null;
+        //LA CONSULTA
+        String consulta = "UPDATE usuario SET nick_usuario=?,nombre_usuario=?,email_usuario=?,passwd_usuario=? WHERE id_usuario=?";
+
+        try {
+            //Se establece la conexion
+            miConn = datos.getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //se pasa la consulta al statement
+        try {
+            stUpdate = miConn.prepareStatement(consulta);
+
+            //DAMOS VALORES AL STATEMENT
+            stUpdate.setString(1, uTemp.getNickUser());
+            stUpdate.setString(2, uTemp.getNombreUser());
+            stUpdate.setString(3, uTemp.getEmailUser());
+            stUpdate.setString(4, uTemp.getPassUser());
+            stUpdate.setInt(5, uTemp.getIdUser());
+            System.out.println(stUpdate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //EJECUTAMOS
+        try {
+            stUpdate.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
