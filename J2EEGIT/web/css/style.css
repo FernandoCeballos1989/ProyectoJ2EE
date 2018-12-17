@@ -5,11 +5,254 @@
     Author     : Fernando Ceballos Carreras<fernandoceballos1989@gmail.com>
 */
 
-.mibody{
-    background-color: aliceblue
+
+/*
+
+ESTILOS DE CABECERA FIJA ,CON MENÚ RESPONSIVE Y FOOTER
+*/
+
+body{
+    background: #d7f7f5;
+    font-family: georgia,times,serif;
+    color: #333;
+    font-size: 1.2rem;
+    line-height: 1.4em;
+    margin: 0;
+}
+
+p{
+    margin-bottom: 1.6em;   
+}
+
+h1{
+    font-size: 2rem;
+    line-height: 1.3em;
+}
+
+.container{
+    width: 85%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.header{
+    background: #2a6171;
+    color: #f3d516;
+    padding: 2rem 0;
+    position: fixed;
+    left: 0;
+    top:0;
+    right: 0;
+}
+
+.header a{
+    color: white;
+    text-decoration: none;
+}
+
+.logo-nav-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo{
+    letter-spacing: 15px;
+    font-size: 1.4em;
+}
+
+.menu-icon{
+    display: none;
+}
+
+.navigation ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navigation ul li{
+    display: inline-block;
+}
+
+.navigation ul li a{
+    display: block;
+    padding: 0.5rem 1rem;
+    transition: all 0.4s linear;
+    border-radius: 5px;
+}
+
+.navigation ul li a:hover{
+    background: #4a4a4a;
+}
+
+.footer{
+    background: #75cac3;
+    padding: 4rem 0;
+    text-align: center;
+    margin-top: 6rem;
+}
+
+.footer .container{
+     right:0;
+     left:0;
+}
+
+.main{
+    padding-top: 10rem;
 }
 
 
+@media only screen and (max-width: 767px){
+
+    .menu-icon{
+        display: block;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+
+    }
+
+    .navigation{
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .navigation ul{
+        display:none;
+    }
+
+    .navigation ul.show{
+        display:block;
+    }
+
+    .navigation ul li{
+        display:block;
+    }
+
+    .navigation ul li a{
+        display: block;
+        padding: 0.5rem 0;
+        transition: all 0.4s linear;
+        border-radius: 5px;
+    }
+
+    .navigation ul li a:hover{
+        background: #4a4a4a;
+    }
+}
+
+
+
+/*
+ESTILOS CAJA LOGIN  
+*/
+
+#login-box{
+    position :relative;
+    margin: 5% auto;
+    height: 400px;
+    width: 600px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+.login-box-left{
+    position:absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 300px;
+    height: 400px;
+}
+
+
+#login-box h1{
+    margin: 0 0 20px 0;
+    font-weight: 300;
+    font-size: 28px;
+}
+
+
+input[type="text"],
+input[type="password"]
+{
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 4px;
+    width: 220px;
+    height: 32px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #aaa;
+    font-family: sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    transition: 0.2s ease;
+
+}
+
+input[type="submit"]{
+
+    margin-bottom: 28px;        
+    width: 120px;
+    height: 32px;
+    background: #f3d516;
+    border: none;
+    border-radius: 2px;
+    font-family: sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: 0.2s ease;
+    cursor: pointer;
+
+
+}
+
+
+
+input[type="submit"]:hover,
+input[type="submit"]:focus
+{
+    background: #f48e21;
+    transition: 0.2s ease;
+    align-self: center;
+
+}
+
+
+
+.login-box-right{
+    position:absolute;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 300px;
+    height: 400px;
+    background-image: url(../resources/arcaderecord.jpeg);
+    background-size: cover;
+    background-position: center;    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+TABLAS
+*/
 
 table.paleBlueRows {
     float:left;
