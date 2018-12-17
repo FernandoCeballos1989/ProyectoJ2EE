@@ -1,7 +1,7 @@
 
 <header class="header">
     <div class="container logo-nav-container">
-        <a href="#" class="logo">LOGO</a>
+        <a href="#" class="logo">MyGamesCollection</a>
         <span class="menu-icon">
             ver menu
         </span>

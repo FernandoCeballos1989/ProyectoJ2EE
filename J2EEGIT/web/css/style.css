@@ -57,9 +57,16 @@ h1{
     flex-wrap: wrap;
 }
 
+/*FUENTE PARA LOGO NAVBAR*/
+@font-face{
+    font-family: miFuente;
+    src: url(../resources/fonts/Games-Italic.ttf);
+}
+
 .logo{
     letter-spacing: 15px;
     font-size: 1.4em;
+    font-family: miFuente;
 }
 
 .menu-icon{
@@ -95,8 +102,8 @@ h1{
 }
 
 .footer .container{
-     right:0;
-     left:0;
+    right:0;
+    left:0;
 }
 
 .main{
@@ -141,6 +148,7 @@ h1{
         background: #4a4a4a;
     }
 }
+
 
 
 
@@ -232,7 +240,7 @@ input[type="submit"]:focus
     padding: 40px;
     width: 300px;
     height: 400px;
-    background-image: url(../resources/arcaderecord.jpeg);
+    background-image: url(../resources/Images/arcaderecord.jpeg);
     background-size: cover;
     background-position: center;    
 }
@@ -254,55 +262,63 @@ input[type="submit"]:focus
 TABLAS
 */
 
-table.paleBlueRows {
-    float:left;
-    font-family: Arial, Helvetica, sans-serif;
-    border: 7px solid #FFFFFF;
-    background-color: #EEEEEE;
-    width: 350px;
-    height: 200%;
-    text-align: center;
+.tablausers{
+    border: 1px solid #333;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     border-collapse: collapse;
-}
-table.paleBlueRows td, table.paleBlueRows th {
-    border: 5px solid #C5DDE7;
-    padding: 2px 2px;
-}
-table.paleBlueRows tbody td {
-    font-size: 14px;
-    color: #000000;
-}
-table.paleBlueRows tr:nth-child(even) {
-    background: #D0E4F5;
-}
-table.paleBlueRows thead {
-    background: #1167A4;
-    background: -moz-linear-gradient(top, #4c8dbb 0%, #2876ad 66%, #1167A4 100%);
-    background: -webkit-linear-gradient(top, #4c8dbb 0%, #2876ad 66%, #1167A4 100%);
-    background: linear-gradient(to bottom, #4c8dbb 0%, #2876ad 66%, #1167A4 100%);
-    border-bottom: 3px solid #FFFFFF;
-}
-table.paleBlueRows thead th {
-    font-size: 24px;
-    font-weight: bold;
-    color: #FFFFFF;
-    text-align: center;
-}
-table.paleBlueRows tfoot td {
-    font-size: 14px;
-}
-table.paleBlueRows tfoot .links {
-    text-align: right;
-}
-table.paleBlueRows tfoot .links a{
-    display: inline-block;
-    background: #1C6EA4;
-    color: #FFFFFF;
-    padding: 2px 8px;
+    border-spacing: 0; 
     border-radius: 5px;
 }
 
-#cntBtn{
-    vertical-align: auto;
-    margin-left: 100px;
-}  
+.tablausers tr{
+    border: 1px solid;
+    padding: 5px;
+}
+
+.tablausers td,th{
+    padding: 10px;
+    text-align: center;
+}
+
+.tablausers th{
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: 1px;
+    background-color: #75cac3;
+    color: #ffffff;
+}
+
+
+@media only screen and (max-width: 767px){
+
+    .tablausers{
+        border: 0;
+    }
+
+    .tablausers tr{
+        margin-bottom: 10px;
+        display: block;
+        border-bottom: 2px solid;
+    }
+
+    .tablausers td{
+        display: block;
+        text-align: right;
+        font-size: 16px;
+        border-bottom: 1px dotted;
+    }
+
+    .tablausers td:last-child{
+        border-bottom: 0;
+    }
+
+
+    .tablausers td:before{
+        border-bottom: 0;
+    }
+
+
+
+}

@@ -47,8 +47,8 @@
                         </span>
                         
                     </div>
-
                 </div>
+                <br/>
             </main>
 
         <jsp:include page="/Templates/Footer.jsp"></jsp:include>    
